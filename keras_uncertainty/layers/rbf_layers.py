@@ -68,7 +68,7 @@ def duq_training_loop(model, input_feature_model, x_train, y_train, epochs=10, b
             print("Validation metrics: {}".format(desc))
 
 def add_gradient_penalty(model, lambda_coeff=0.5, penalty_type="two-sided"):
-    term = K.gradients(K.sum(model.output, axis=1), model.input)
+    term = K.GradientTape(K.sum(model.output, axis=1), model.input)
     term = K.square(term)
 
     if penalty_type == "two-sided":
